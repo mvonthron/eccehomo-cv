@@ -1,6 +1,6 @@
 Eccehomo-cv : LaTeX resume template with multi-language support
 ===============================================================
-Manuel Vonthron - `<manuel DOT vonthron AT acadis DOT org>`
+Manuel Vonthron - `<manuel DOT vonthron AT acadis DOT org>`  
 Version 1.0 - 2011
 
 
@@ -32,7 +32,18 @@ this time. More info soon.
 
 There are two ways of providing translated content. For now, each command
 only accept one of them:
-* Optional language argument:  
-  `\subsection[en]{This is a subsection}` and `\subsection[fr]{Ceci est une sous-section}`
-* Localized content array:
-  `\begin{section}{en={This is a section}, fr={Ceci est une section}}`
+
+*  Optional language argument:
+
+```latex
+\subsection[en]{This is a subsection}
+\subsection[fr]{Ceci est une sous-section}
+```
+
+*  Localized content array:
+
+```latex
+\begin{section}{en={This is a section}, 
+                fr={Ceci est une section}}
+\end{section}
+```
