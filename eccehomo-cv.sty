@@ -82,27 +82,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Making title & update date
 \def\eccehomo@headline{\@empty}
-\def\eccehomo@updatedate{\@empty}
-
 \newcommand{\headline}[1]{%
     \setkeys{localize}{#1}
     \def\eccehomo@headline{\eccehomo@localize@text}
 }
 
+% TODO: cannot be used with \headline: variable override
+\def\eccehomo@updatedate{\@empty}
 \newcommand{\lastupdated}[1]{%
     \setkeys{localize}{#1}
     \def\eccehomo@updatedate{\eccehomo@localize@text}
 }
 
 \newcommand{\printupdated}{%
-    \eccehomo@localize@expand{en}{\vfill\hfill \small \verb!updated \eccehomo@updatedate!}
-    \eccehomo@localize@expand{fr}{\vfill\hfill \small \verb!misajour \eccehomo@updatedate!}
+    \localize{en}{\vfill\hfill \small \verb!updated \eccehomo@updatedate!}
+    \localize{fr}{\vfill\hfill \small \verb!misajour \eccehomo@updatedate!}
 }
 
 \renewcommand{\maketitle}{%
   \centering{
-    \noindent{\LARGE\sc Manuel Vonthron} \vspace{0.4em}\\
-    {\Large Computer engineer, M.A.Sc. student}
+    \noindent{\LARGE\sc \@author} \vspace{0.4em}\\
+    {\Large \localize{\eccehomo@localize@lang}{\eccehomo@headline}}
     %\vspace{0.3em} \hrule \vspace{1em}
     \vspace{2em} \\ 
   }
