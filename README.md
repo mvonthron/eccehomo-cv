@@ -27,3 +27,5 @@ Basic usage
 
 Multi-language usage
 --------------------
+This is a work in progress. Only french-english combination is supported at
+this time. More info soon.
