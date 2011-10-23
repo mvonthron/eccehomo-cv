@@ -1,0 +1,143 @@
+%
+%
+%
+\ProvidesPackage{eccehomo-cv}[2011/07/01 Yet another resume template for LaTeX - Manuel Vonthron 2011]
+
+\nofiles
+
+%\def\@pdfauthor{}
+%\def\@pdftitle{}
+
+%~ \ifx \eccehomo@localize@current \@empty
+    \def\eccehomo@localize@current{en}
+%~ \fi
+
+\def\eccehomo@localize@any{any}
+\def\eccehomo@localize@french{fr}
+\def\eccehomo@localize@english{en}
+
+% Language options
+\DeclareOption{fr}{\ExecuteOptions{french}}
+\DeclareOption{french}{%
+    \def\eccehomo@localize@current{\eccehomo@localize@french}
+}
+
+\DeclareOption{en}{\ExecuteOptions{english}}
+\DeclareOption{english}{%
+    \def\eccehomo@localize@current{\eccehomo@localize@english}
+}
+%
+
+\ProcessOptions
+
+
+
+\newlength{\marginlength}
+\setlength{\marginlength}{3.5cm}
+\newlength{\contentlength}
+\setlength{\contentlength}{15cm}
+
+\RequirePackage{ifthen}
+\RequirePackage{eso-pic}
+\RequirePackage{color}
+
+%%%
+\RequirePackage{xkeyval}
+\RequirePackage{xkvview}
+\def\eccehomo@localize@lang{\@empty}
+\def\eccehomo@localize@text{\@empty}
+\define@key{localize}{fr}[]{\ifthenelse{\equal{\eccehomo@localize@current}{\eccehomo@localize@french}}{\def\eccehomo@localize@lang{\eccehomo@localize@french}\def\eccehomo@localize@text{#1}}{}}
+\define@key{localize}{en}[]{\ifthenelse{\equal{\eccehomo@localize@current}{\eccehomo@localize@english}}{\def\eccehomo@localize@lang{\eccehomo@localize@english}\def\eccehomo@localize@text{#1}}{}}
+
+
+\pagestyle{empty}
+%\parindent=0pt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\eccehomo@localize@expand}[2]{%
+    \ifthenelse{\equal{#1}{} \OR \equal{#1}{\eccehomo@localize@current}}
+        {#2}{}
+}
+
+% Direct access to \eccehomo@localize@expand
+\newcommand{\localize}[2]{%
+    \eccehomo@localize@expand{#1}{#2}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\printmargin}[2][1000]
+{%
+  \definecolor{lgray}{rgb}{0.95,0.95,0.95}
+  \AddToShipoutPicture{%
+      \put(0,0){%
+      \colorbox{lgray}{%
+        \makebox(#2,#1){}%
+      }
+    }
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Making title & update date
+\def\eccehomo@headline{\@empty}
+\def\eccehomo@updatedate{\@empty}
+
+\newcommand{\headline}[1]{%
+    \setkeys{localize}{#1}
+    \def\eccehomo@headline{\eccehomo@localize@text}
+}
+
+\newcommand{\lastupdated}[1]{%
+    \setkeys{localize}{#1}
+    \def\eccehomo@updatedate{\eccehomo@localize@text}
+}
+
+\newcommand{\printupdated}{%
+    \eccehomo@localize@expand{en}{\vfill\hfill \small \verb!updated \eccehomo@updatedate!}
+    \eccehomo@localize@expand{fr}{\vfill\hfill \small \verb!misajour \eccehomo@updatedate!}
+}
+
+\renewcommand{\maketitle}{%
+  \centering{
+    \noindent{\LARGE\sc Manuel Vonthron} \vspace{0.4em}\\
+    {\Large Computer engineer, M.A.Sc. student}
+    %\vspace{0.3em} \hrule \vspace{1em}
+    \vspace{2em} \\ 
+  }
+}
+% End title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of content sectioning
+\renewenvironment{section}[2][]
+  {\setkeys{localize}{#2}%
+  \eccehomo@localize@expand{\eccehomo@localize@lang}{%
+      \vspace{1em} \hspace{-2em}
+       \begin{tabular}{p{\marginlength}p{\contentlength}}
+       \hrule & \raisebox{-.5ex}[0pt][0pt]{ \large\sc \eccehomo@localize@text } \hrulefill \vspace{1em}\\ }
+  }
+  { \eccehomo@localize@expand{\eccehomo@localize@lang}{ \end{tabular} } }
+
+\newcommand{\place}[3][] {\eccehomo@localize@expand{#1}{%
+    & \textbf{#3}, #2 \vspace{0.2em} \\ }
+}
+  
+\renewcommand{\subsection}[2][] {\eccehomo@localize@expand{#1}{%
+    & \textbf{#2} \vspace{0.5em} \\ }
+}
+
+\newcommand{\position}[4][] {\eccehomo@localize@expand{#1}{%
+    \noindent{\bf \small #2} & \emph{#3}           \\
+                             & #4  \vspace{0.5em}  \\
+    }
+}
+
+% same as \position but only one line
+\renewcommand{\item}[3][]{\eccehomo@localize@expand{#1}{%
+    \noindent{\bf \small #2} &   #3 \vspace{2pt}\\ }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
