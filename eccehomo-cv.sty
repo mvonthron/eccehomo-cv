@@ -100,12 +100,14 @@
 }
 
 \renewcommand{\maketitle}{%
+  \begin{minipage}{\paperwidth}
   \centering{
     \noindent{\LARGE\sc \@author} \vspace{0.4em}\\
     {\Large \localize{\eccehomo@localize@lang}{\eccehomo@headline}}
     %\vspace{0.3em} \hrule \vspace{1em}
     \vspace{2em} \\ 
-  }
+  }%
+  \end{minipage}
 }
 % End title
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,7 +129,7 @@
 }
   
 \renewcommand{\subsection}[2][] {\eccehomo@localize@expand{#1}{%
-    & \textbf{#2} \vspace{0.5em} \\ }
+    & \textbf{#2} \vspace{0.2em} \\ }
 }
 
 \newcommand{\position}[4][] {\eccehomo@localize@expand{#1}{%
