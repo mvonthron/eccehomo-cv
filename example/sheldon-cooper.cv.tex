@@ -48,8 +48,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{section}{en={Professional experience}, 
                 fr={Expérience professionelle}}
+
+% if no language specified (like \place[en]{...}{...}), will be printed in any version
 \place{Pasadena, CA}{California Institute of Technlogy}
-\position{2005 -- present}{Sr Particle Physicist}
+% English version
+\position[en]{2005 -- present}{Sr Particle Physicist}
     {String theory research \newline
      % itemize are not supported at the moment since the temmplate is tabular-based
      % let's do this manually
@@ -58,15 +61,31 @@
       \indent -- Implications of gamma rays from dark matter annihilations
      }
     }
+% French version of the same item
+\position[fr]{2005 -- présent}{Physicien, théorie des particules}
+    {Recherche en théorie des cordes \newline
+     % itemize are not supported at the moment since the temmplate is tabular-based
+     % let's do this manually
+     {\small
+      \indent -- Résolution du paradoxe de non-déterminisme des trous noir en utilisant les condensats de réseaux de cordes ou quelque chose comme ça \newline
+      \indent -- Implications des rayons gamma venant de l'annihiliation de la matière noire
+     }
+    }
 \end{section}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{section}{en={Education}, 
               fr={Formation}}
     \place{Pasadena, CA}{California Institute of Technlogy}
-    \position{2002 -- 2005}{Ph.D. candidate}
+    \position[en]{2002 -- 2005}{Ph.D. candidate}
         {Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in viverra eros. \textbf{Sed malesuada} porttitor velit, vitae bibendum velit feugiat in. Morbi orci turpis, hendrerit ut lobortis quis, mattis vestibulum turpis. Donec nisi neque, sodales id vehicula tincidunt, scelerisque venenatis urna.}
-    \position{2000 -- 2002}{M.S. student}
+    \position[fr]{2002 -- 2005}{Étudiant au doctorant}
+        {Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in viverra eros. \textbf{Sed malesuada} porttitor velit, vitae bibendum velit feugiat in. Morbi orci turpis, hendrerit ut lobortis quis, mattis vestibulum turpis. Donec nisi neque, sodales id vehicula tincidunt, scelerisque venenatis urna.}
+
+    \position[en]{2000 -- 2002}{M.S. student}
+        {Praesent rutrum sem ut sem condimentum eu rutrum velit dapibus. Ut a dolor turpis. \newline
+         Nunc porttitor arcu vitae arcu auctor vitae semper justo suscipit.}
+    \position[fr]{2000 -- 2002}{Étudiant à la maitrise}
         {Praesent rutrum sem ut sem condimentum eu rutrum velit dapibus. Ut a dolor turpis. \newline
          Nunc porttitor arcu vitae arcu auctor vitae semper justo suscipit.}
 \end{section}
@@ -74,13 +93,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{section}{en={Awards}, 
               fr={R\'ecompenses}}
+    \item[en]{2010} {\textit{National Science Foundation} grant to study magnetic monopole particles}
+    \item[fr]{2010} {Bourse de la \textit{National Science Foundation} pour l'étude des particules à monopole magnétique}
 
-    \item{2010} {\textit{National Science Foundation} grant to study magnetic monopole particles}
-    \item{2009} {Another one because we need some dummy content}
+    \item[en]{2009} {Another one because we need some dummy content}
+    \item[fr]{2009} {Et un autre pour remplir l'espace}
 
-\subsection{To be achieved}
-    \item{Soon}     {Fields Medal}
-    \item{Sooner}   {Nobel Prize in Physics}
+\subsection[en]{To be achieved}
+\subsection[fr]{En cours de réalisation}
+    \item[en]{Soon}     {Médaille Fields}
+    \item[fr]{Bientôt}  {Médaille Fields}
+    \item[en]{Sooner}           {Nobel Prize in Physics}
+    \item[fr]{Encore plus tôt}  {Prix Nobel de Physique}
 \end{section}
 
 \end{document}
