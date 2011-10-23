@@ -1,3 +1,10 @@
+%
+% The purpose of this document is to illustrate the use of the 'eccehomo-cv'
+% package. I tried to used every command of the package and used the
+% french-english multilang support
+% For a real-case use of the template, you may look at my own resume at:
+%   http://www.acadis.org/~gliss/manuel-vonthron.cv.tex
+%
 \documentclass[letter]{article}
 
 \usepackage[utf8]{inputenc}
@@ -16,7 +23,6 @@
 \usepackage[en]{eccehomo-cv}
 \printmargin{132}
 
-
 % Your name
 \author{Sheldon Cooper}
 
@@ -27,4 +33,54 @@
 
 \begin{document}
 \maketitle
+
+% TODO: to be cleaned with a null title section env
+\noindent
+\begin{tabular}{p{3.5cm}p{8cm}p{7cm}}
+{\small\sc Contact}       & 4242, California Blvd       & tel: 1-314-159-2654   \\
+{\small\sc Informations}  & Pasadena, CA                & e-mail: \url{sheldon.cooper.phd@example.org} \vspace{0.5em}
+\end{tabular}
+\begin{tabular}{p{3.5cm}p{15cm}}
+{\small\sc Key Interests} & Particles theory, lasers, swords \\
+\end{tabular}
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{section}{en={Professional experience}, 
+                fr={Expérience professionelle}}
+\place{Pasadena, CA}{California Institute of Technlogy}
+\position{2005 -- present}{Sr Particle Physicist}
+    {String theory research \newline
+     % itemize are not supported at the moment since the temmplate is tabular-based
+     % let's do this manually
+     {\small
+      \indent -- Solved the black hole information paradox using a string network condensate approach \newline
+      \indent -- Implications of gamma rays from dark matter annihilations
+     }
+    }
+\end{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{section}{en={Education}, 
+              fr={Formation}}
+    \place{Pasadena, CA}{California Institute of Technlogy}
+    \position{2002 -- 2005}{Ph.D. candidate}
+        {Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in viverra eros. \textbf{Sed malesuada} porttitor velit, vitae bibendum velit feugiat in. Morbi orci turpis, hendrerit ut lobortis quis, mattis vestibulum turpis. Donec nisi neque, sodales id vehicula tincidunt, scelerisque venenatis urna.}
+    \position{2000 -- 2002}{M.S. student}
+        {Praesent rutrum sem ut sem condimentum eu rutrum velit dapibus. Ut a dolor turpis. \newline
+         Nunc porttitor arcu vitae arcu auctor vitae semper justo suscipit.}
+\end{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{section}{en={Awards}, 
+              fr={R\'ecompenses}}
+
+    \item{2010} {\textit{National Science Foundation} grant to study magnetic monopole particles}
+    \item{2009} {Another one because we need some dummy content}
+
+\subsection{To be achieved}
+    \item{Soon}     {Fields Medal}
+    \item{Sooner}   {Nobel Prize in Physics}
+\end{section}
+
 \end{document}
