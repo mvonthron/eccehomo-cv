@@ -33,13 +33,15 @@
 
 
 \newlength{\marginlength}
-\setlength{\marginlength}{3.5cm}
+\setlength{\marginlength}{3cm}
 \newlength{\contentlength}
-\setlength{\contentlength}{15cm}
+\setlength{\contentlength}{15.5cm}
 
 \RequirePackage{ifthen}
 \RequirePackage{eso-pic}
 \RequirePackage{color}
+\definecolor{dgray}{rgb}{0.20,0.20,0.20}
+\definecolor{lgray}{rgb}{0.95,0.95,0.95}
 
 %%%
 \RequirePackage{xkeyval}
@@ -69,7 +71,6 @@
 
 \newcommand{\printmargin}[2][1000]
 {%
-  \definecolor{lgray}{rgb}{0.95,0.95,0.95}
   \AddToShipoutPicture{%
       \put(0,0){%
       \colorbox{lgray}{%
@@ -118,7 +119,7 @@
 \renewenvironment{section}[2][]
   {\setkeys{localize}{#2}%
   \eccehomo@localize@expand{\eccehomo@localize@lang}{%
-      \vspace{1em} \hspace{-2em}
+      \vspace{0em} \hspace{-2em}
        \begin{tabular}{p{\marginlength}p{\contentlength}}
        \hrule & \raisebox{-.5ex}[0pt][0pt]{ \large\sc \eccehomo@localize@text } \hrulefill \vspace{1em}\\ }
   }
