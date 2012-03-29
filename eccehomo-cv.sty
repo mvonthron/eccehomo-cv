@@ -15,7 +15,7 @@
 \def\eccehomo@localize@any{any}
 \def\eccehomo@localize@french{fr}
 \def\eccehomo@localize@english{en}
-
+\def\eccehomo@compact{false}
 % Language options
 \DeclareOption{fr}{\ExecuteOptions{french}}
 \DeclareOption{french}{%
@@ -26,8 +26,10 @@
 \DeclareOption{english}{%
     \def\eccehomo@localize@current{\eccehomo@localize@english}
 }
+\DeclareOption{compact}{%
+    \def\eccehomo@compact{true}
+}
 %
-
 \ProcessOptions
 
 
@@ -35,7 +37,7 @@
 \newlength{\marginlength}
 \setlength{\marginlength}{3cm}
 \newlength{\contentlength}
-\setlength{\contentlength}{15.5cm}
+\setlength{\contentlength}{16.5cm}
 
 \RequirePackage{ifthen}
 \RequirePackage{eso-pic}
@@ -64,7 +66,11 @@
 
 % Direct access to \eccehomo@localize@expand
 \newcommand{\localize}[2]{%
-    \eccehomo@localize@expand{#1}{#2}
+    \eccehomo@localize@expand{#1}{#2}%
+}
+
+\newcommand{\ifcompact}[2]{%
+    \ifthenelse{\equal{\eccehomo@compact}{true}}{#1}{#2}%
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -118,29 +124,33 @@
 % Definition of content sectioning
 \renewenvironment{section}[2][]
   {\setkeys{localize}{#2}%
-  \eccehomo@localize@expand{\eccehomo@localize@lang}{%
+  \localize{\eccehomo@localize@lang}{%
       \vspace{0em} \hspace{-2em}
        \begin{tabular}{p{\marginlength}p{\contentlength}}
        \hrule & \raisebox{-.5ex}[0pt][0pt]{ \large\sc \eccehomo@localize@text } \hrulefill \vspace{1em}\\ }
   }
-  { \eccehomo@localize@expand{\eccehomo@localize@lang}{ \end{tabular} } }
+  { \localize{\eccehomo@localize@lang}{ \end{tabular} } }
 
-\newcommand{\place}[3][] {\eccehomo@localize@expand{#1}{%
-    & \textbf{#3}, #2 \vspace{0.2em} \\ }
+\newcommand{\place}[3][] {\ifcompact{
+        \localize{#1}{& \textbf{#3}, #2 \vspace{0.2em} \\}
+    }{
+        \localize{#1}{& \textbf{#3}, #2 \vspace{0.2em} \\}
+    }
 }
   
-\renewcommand{\subsection}[2][] {\eccehomo@localize@expand{#1}{%
+\renewcommand{\subsection}[2][] {\localize{#1}{%
     & \textbf{#2} \vspace{0.2em} \\ }
 }
 
-\newcommand{\position}[4][] {\eccehomo@localize@expand{#1}{%
-    \noindent{\bf \small #2} & \emph{#3}           \\
-                             & #4  \vspace{0.5em}  \\
+\newcommand{\position}[4][] {\ifcompact{
+        \localize{#1}{ \noindent{\bf \small #2} & \emph{#3}: #4  \vspace{0.5em}  \\ }
+    }{
+        \localize{#1}{ \noindent{\bf \small #2} & \emph{#3} \\ & #4  \vspace{0.5em}  \\ }
     }
 }
 
 % same as \position but only one line
-\renewcommand{\item}[3][]{\eccehomo@localize@expand{#1}{%
+\renewcommand{\item}[3][]{\localize{#1}{%
     \noindent{\bf \small #2} &   #3 \vspace{2pt}\\ }
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
